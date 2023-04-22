@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://derol8d1snab4"]
+
+[ext_resource type="Texture2D" uid="uid://blr37fkpud3kr" path="res://Player/tilemap.png" id="1_civui"]
+[ext_resource type="PackedScene" uid="uid://eajd2yq56b21" path="res://Player/player.tscn" id="2_eifq0"]
+[ext_resource type="Script" path="res://Player/player.gd" id="3_nkiq3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoqeo"]
+texture = ExtResource("1_civui")
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0 = 0
+4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:2/0/physics_layer_0/angular_velocity = 0.0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_njdy8"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qoqeo")
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_njdy8")
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(131071, 196608, 1, 65536, 196608, 1, 65537, 196608, 1, 65538, 196608, 1, 65539, 196608, 1, 65540, 196608, 1, 196607, 196608, 2, 262143, 196608, 2, 327679, 196608, 2, 131072, 196608, 2, 131073, 196608, 2, 196608, 196608, 2, 196609, 196608, 2, 131074, 196608, 2, 196610, 196608, 2, 131075, 196608, 2, 196611, 196608, 2, 131076, 196608, 2, 196612, 196608, 2, 262145, 196608, 2, 262144, 196608, 2, 262146, 196608, 2, 262147, 196608, 2, 262148, 196608, 2, 131070, 196608, 1, 131069, 196608, 1, 131068, 196608, 1, 131067, 196608, 1, 131066, 131072, 1, 196606, 196608, 2, 196605, 196608, 2, 196604, 196608, 2, 196603, 196608, 2, 262139, 196608, 2, 262140, 196608, 2, 262142, 196608, 2, 262141, 196608, 2, 327678, 196608, 2, 327677, 196608, 2, 327676, 196608, 2, 327675, 196608, 2, 196602, 131072, 2, 262138, 131072, 2, 327674, 131072, 2, 65541, 196608, 1, 65542, 196608, 1, 65543, 196608, 1, 65544, 196608, 1, 65545, 196608, 1, 65546, 196608, 1, 65547, 262144, 1, 131083, 262144, 2, 196619, 262144, 2, 262155, 262144, 2, 131082, 196608, 2, 131081, 196608, 2, 131080, 196608, 2, 131079, 196608, 2, 131078, 196608, 2, 131077, 196608, 2, 196613, 196608, 2, 262149, 196608, 2, 196614, 196608, 2, 196615, 196608, 2, 196616, 196608, 2, 196618, 196608, 2, 196617, 196608, 2, 262150, 196608, 2, 262151, 196608, 2, 262152, 196608, 2, 262153, 196608, 2, 262154, 196608, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_eifq0")]
+position = Vector2(22, 10)
+script = ExtResource("3_nkiq3")

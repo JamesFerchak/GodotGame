@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://eajd2yq56b21"]
+
+[ext_resource type="Texture2D" uid="uid://byovi51gt4s0b" path="res://Player/Player_idlesheet.png" id="1_em7q4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_221sm"]
+radius = 2.944
+height = 7.888
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(-8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.056)
+shape = SubResource("CapsuleShape2D_221sm")
+
+[node name="PlayerIdlesheet" type="Sprite2D" parent="."]
+texture = ExtResource("1_em7q4")
+hframes = 4
