@@ -46,6 +46,13 @@ jump={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Lava"
+2d_physics/layer_3="Spikes"
+2d_physics/layer_4="Background"
+
 [physics]
 
 2d/default_gravity=1000.0

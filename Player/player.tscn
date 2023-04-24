@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://eajd2yq56b21"]
+[gd_scene load_steps=12 format=3 uid="uid://eajd2yq56b21"]
 
 [ext_resource type="Texture2D" uid="uid://byovi51gt4s0b" path="res://Player/Player_idlesheet.png" id="1_em7q4"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_vics5"]
 [ext_resource type="Texture2D" uid="uid://c64oasiyu8xf3" path="res://Player/player_run.png" id="2_rbbm5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_221sm"]
@@ -55,8 +56,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_brhef"]
+radius = 4.12311
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-8, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_vics5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.056)
@@ -67,3 +74,8 @@ sprite_frames = SubResource("SpriteFrames_lbj3q")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.0464621
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+
+[node name="hbox" type="CollisionShape2D" parent="PlayerHitbox"]
+shape = SubResource("CircleShape2D_brhef")
