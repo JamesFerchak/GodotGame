@@ -70,8 +70,8 @@ func _physics_process(delta):
 
 func jump():
 	velocity.y = jump_velocity
-	animated_sprite.play("jump_start")
-	animation_locked = true
+	#animated_sprite.play("jump_start")
+	#animation_locked = true
 
 func land():
 	animated_sprite.play("idle")
