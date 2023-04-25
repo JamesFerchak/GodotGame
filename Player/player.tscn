@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://eajd2yq56b21"]
+[gd_scene load_steps=17 format=3 uid="uid://eajd2yq56b21"]
 
 [ext_resource type="Texture2D" uid="uid://byovi51gt4s0b" path="res://Player/Player_idlesheet.png" id="1_em7q4"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_vics5"]
 [ext_resource type="Texture2D" uid="uid://c64oasiyu8xf3" path="res://Player/player_run.png" id="2_rbbm5"]
+[ext_resource type="Texture2D" uid="uid://ca3r753yuu5s6" path="res://Player/player_jump-Sheet.png" id="3_34syd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_221sm"]
 radius = 2.944
@@ -15,6 +16,22 @@ region = Rect2(0, 0, 8, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_72osy"]
 atlas = ExtResource("1_em7q4")
 region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b55js"]
+atlas = ExtResource("3_34syd")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgq0f"]
+atlas = ExtResource("3_34syd")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1qsn"]
+atlas = ExtResource("3_34syd")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ner81"]
+atlas = ExtResource("3_34syd")
+region = Rect2(24, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1x4jj"]
 atlas = ExtResource("2_rbbm5")
@@ -40,6 +57,23 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b55js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgq0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1qsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ner81")
+}],
+"loop": false,
+"name": &"jump_start",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -71,11 +105,14 @@ shape = SubResource("CapsuleShape2D_221sm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lbj3q")
-animation = &"idle"
+animation = &"jump_start"
 autoplay = "idle"
-frame_progress = 0.0464621
+frame = 3
+frame_progress = 1.0
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 
-[node name="hbox" type="CollisionShape2D" parent="PlayerHitbox"]
+[node name="player_hurtbox" type="CollisionShape2D" parent="PlayerHitbox"]
 shape = SubResource("CircleShape2D_brhef")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
