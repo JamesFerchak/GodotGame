@@ -1,13 +1,23 @@
-[gd_scene load_steps=17 format=3 uid="uid://eajd2yq56b21"]
+[gd_scene load_steps=21 format=3 uid="uid://eajd2yq56b21"]
 
 [ext_resource type="Texture2D" uid="uid://byovi51gt4s0b" path="res://Player/Player_idlesheet.png" id="1_em7q4"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_vics5"]
+[ext_resource type="PackedScene" uid="uid://rgr56bu31xor" path="res://Player/bullet.tscn" id="2_a5qdx"]
+[ext_resource type="Texture2D" uid="uid://djlhmirnpaunp" path="res://Player/player_hurt.png" id="2_r1bu0"]
 [ext_resource type="Texture2D" uid="uid://c64oasiyu8xf3" path="res://Player/player_run.png" id="2_rbbm5"]
 [ext_resource type="Texture2D" uid="uid://ca3r753yuu5s6" path="res://Player/player_jump-Sheet.png" id="3_34syd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_221sm"]
 radius = 2.944
 height = 7.888
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kcd2i"]
+atlas = ExtResource("2_r1bu0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7x3r"]
+atlas = ExtResource("2_r1bu0")
+region = Rect2(8, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hn58u"]
 atlas = ExtResource("1_em7q4")
@@ -47,6 +57,17 @@ region = Rect2(16, 0, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lbj3q"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kcd2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7x3r")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hn58u")
@@ -98,6 +119,7 @@ position = Vector2(-8, 0)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_vics5")
+bullet = ExtResource("2_a5qdx")
 speed = 80.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -106,14 +128,15 @@ shape = SubResource("CapsuleShape2D_221sm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lbj3q")
-animation = &"jump_start"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
 
 [node name="player_hurtbox" type="CollisionShape2D" parent="PlayerHitbox"]
 shape = SubResource("CircleShape2D_brhef")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(5, 0)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

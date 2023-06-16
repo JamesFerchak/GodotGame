@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+#variable to hold bullet
+@export var bullet : PackedScene
+
+
 const LAVA_LAYER = 1 << (2 - 1)    # collision layer 2
 #const ITEM_BLOCK_LAYER = 1 << (6 - 1)  # collision layer 6
 var layer_of_collision = null
@@ -10,6 +14,9 @@ var health = 3
 var player_alive = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+@onready var marker: Marker2D = $Marker2D
+# access the marker for bullet shooting
 
 @onready var collider: CollisionShape2D = $CollisionShape2D
 # access the animated sprite
@@ -29,7 +36,8 @@ func kill():
 	get_tree().quit()
 func heal():
 	health = 3
-	
+
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -43,6 +51,11 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump()
+		
+	#check for shoot button + mag
+	if Input.is_action_just_pressed("shoot"):
+		if get_tree().get_nodes_in_group("pBullet").size() <= 2:
+			shoot()
 		
 	
 	# Get the input direction and handle the movement/deceleration.
@@ -68,6 +81,12 @@ func _physics_process(delta):
 	updateMovingDirection()
 	
 
+func shoot():
+	var b = bullet.instantiate()
+	owner.add_child(b)
+	b.transform = $Marker2D.global_transform
+	pass
+
 func jump():
 	velocity.y = jump_velocity
 	#animated_sprite.play("jump_start")
@@ -86,13 +105,18 @@ func updateAnimation():
 func updateMovingDirection():
 	if direction.x > 0:
 		animated_sprite.flip_h = false
+		marker.position.x = 5
+		marker.global_rotation_degrees = 0
 	if direction.x < 0:
-		animated_sprite.flip_h = true;
+		animated_sprite.flip_h = true
+		marker.position.x = -5
+		marker.global_rotation_degrees = 180
 
 func touched_lava():
 	print_debug("touched laba")
 	health-=1
 	print_debug("current health: " + str(health))
+	animation_locked = true
 	velocity.y = jump_velocity * 1.2
 	layer_of_collision = null
 
