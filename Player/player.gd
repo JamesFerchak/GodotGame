@@ -116,7 +116,7 @@ func touched_lava():
 	print_debug("touched laba")
 	health-=1
 	print_debug("current health: " + str(health))
-	animation_locked = true
+	# animation_locked = true
 	velocity.y = jump_velocity * 1.2
 	layer_of_collision = null
 

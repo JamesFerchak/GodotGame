@@ -58,11 +58,12 @@ shoot={
 2d_physics/layer_2="Lava"
 2d_physics/layer_3="Spikes"
 2d_physics/layer_4="Background"
+2d_physics/layer_5="playerBullet"
 
 [physics]
 
 3d/default_gravity=7.5
-2d/default_gravity=1000.0
+2d/default_gravity=800.0
 
 [rendering]
 
