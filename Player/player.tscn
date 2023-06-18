@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ca3r753yuu5s6" path="res://Player/player_jump-Sheet.png" id="3_34syd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_221sm"]
-radius = 2.944
-height = 7.888
+radius = 3.0
+height = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kcd2i"]
 atlas = ExtResource("2_r1bu0")
@@ -43,13 +43,13 @@ region = Rect2(16, 0, 8, 8)
 atlas = ExtResource("3_34syd")
 region = Rect2(24, 0, 8, 8)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1x4jj"]
-atlas = ExtResource("2_rbbm5")
-region = Rect2(0, 0, 8, 8)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvvpb"]
 atlas = ExtResource("2_rbbm5")
 region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x4jj"]
+atlas = ExtResource("2_rbbm5")
+region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_td0ep"]
 atlas = ExtResource("2_rbbm5")
@@ -98,13 +98,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1x4jj")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_bvvpb")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_1x4jj")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_td0ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x4jj")
 }],
 "loop": true,
 "name": &"run",
@@ -112,11 +115,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_brhef"]
-radius = 4.12311
+radius = 4.0
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-8, 0)
-collision_layer = 0
+collision_layer = 32
 collision_mask = 3
 script = ExtResource("1_vics5")
 bullet = ExtResource("2_a5qdx")
@@ -128,15 +131,19 @@ shape = SubResource("CapsuleShape2D_221sm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lbj3q")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 65
 
 [node name="player_hurtbox" type="CollisionShape2D" parent="PlayerHitbox"]
 shape = SubResource("CircleShape2D_brhef")
+debug_color = Color(0.67451, 0.505882, 0, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(5, 0)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]

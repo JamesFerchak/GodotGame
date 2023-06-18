@@ -54,7 +54,7 @@ func _physics_process(delta):
 		
 	#check for shoot button + mag
 	if Input.is_action_just_pressed("shoot"):
-		if get_tree().get_nodes_in_group("pBullet").size() <= 2:
+		if get_tree().get_nodes_in_group("pBullet").size() <= 1:
 			shoot()
 		
 	
@@ -124,3 +124,9 @@ func touched_lava():
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "idle" or animated_sprite.animation == "run":
 		animation_locked = false
+
+
+func _on_player_hitbox_body_entered(body):
+	if body.is_in_group("enemies"):
+		print_debug("enemy hit player/player hurt")
+		touched_lava()

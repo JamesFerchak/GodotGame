@@ -59,6 +59,8 @@ shoot={
 2d_physics/layer_3="Spikes"
 2d_physics/layer_4="Background"
 2d_physics/layer_5="playerBullet"
+2d_physics/layer_6="player"
+2d_physics/layer_7="enemies"
 
 [physics]
 
