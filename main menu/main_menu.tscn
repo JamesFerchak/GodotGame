@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://jo6h8bvnnpoj"]
+
+[ext_resource type="Script" path="res://main menu/main_menu.gd" id="1_wa858"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wa858")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.045
+anchor_bottom = 0.039
+offset_left = 76.0
+offset_top = 45.0
+offset_right = 78.8
+offset_bottom = 54.94
+text = "Start"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(103, 53)
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
