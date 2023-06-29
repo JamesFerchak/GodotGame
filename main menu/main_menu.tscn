@@ -16,15 +16,23 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.045
 anchor_bottom = 0.039
-offset_left = 76.0
-offset_top = 45.0
-offset_right = 78.8
-offset_bottom = 54.94
+offset_left = 73.0
+offset_top = 40.0
+offset_right = 75.8
+offset_bottom = 49.94
 text = "Start"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(103, 53)
+position = Vector2(96, 54)
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 1.0
+offset_right = 145.0
+offset_bottom = 30.0
+text = "Video Game"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

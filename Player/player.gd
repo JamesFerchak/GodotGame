@@ -12,6 +12,7 @@ var layer_of_collision = null
 @export var jump_velocity: float = -200.0
 var health = 3
 var player_alive = true
+var iFrames = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -93,7 +94,8 @@ func jump():
 	#animation_locked = true
 
 func land():
-	animated_sprite.play("idle")
+	if not animation_locked:
+		animated_sprite.play("idle")
 
 func updateAnimation():
 	if not animation_locked:
@@ -114,12 +116,19 @@ func updateMovingDirection():
 
 func touched_lava():
 	print_debug("touched laba")
-	health-=1
+	if iFrames == false:
+		hurt()
 	print_debug("current health: " + str(health))
 	# animation_locked = true
 	velocity.y = jump_velocity * 1.2
 	layer_of_collision = null
 
+func hurt():
+	health -=1
+	$InvFrameTimer.start()
+	iFrames = true
+	animated_sprite.play("hurt")
+	animation_locked = true
 
 func _on_animated_sprite_2d_animation_finished():
 	if animated_sprite.animation == "idle" or animated_sprite.animation == "run":
@@ -127,6 +136,13 @@ func _on_animated_sprite_2d_animation_finished():
 
 
 func _on_player_hitbox_body_entered(body):
-	if body.is_in_group("enemies"):
-		print_debug("enemy hit player/player hurt")
-		touched_lava()
+	if iFrames == false:
+		if body.is_in_group("enemies"):
+			print_debug("enemy hit player/player hurt")
+			hurt()
+	
+
+
+func _on_inv_frame_timer_timeout():
+	iFrames = false
+	animation_locked = false

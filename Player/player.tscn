@@ -134,7 +134,7 @@ shape = SubResource("CapsuleShape2D_221sm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lbj3q")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
@@ -153,5 +153,9 @@ position = Vector2(5, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/Area2D"]
 shape = SubResource("RectangleShape2D_wmcqn")
 
+[node name="InvFrameTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="timeout" from="InvFrameTimer" to="." method="_on_inv_frame_timer_timeout"]
