@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://boqvcgrdt5bwj"
+path="res://.godot/imported/buttonhover.wav-ce5ad90841616b9233ea91d34029ce85.sample"
+
+[deps]
+
+source_file="res://sound effects/buttonhover.wav"
+dest_files=["res://.godot/imported/buttonhover.wav-ce5ad90841616b9233ea91d34029ce85.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

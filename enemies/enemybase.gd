@@ -20,10 +20,10 @@ func _on_body_entered(body):
 
 #detects if an area has entered the hitbox
 func _on_hitbox_area_entered(area):
-	print_debug("something touched the dummy")
+	print_debug("something touched the [enemy]")
 	if area.is_in_group("pBullet"):
-		print_debug("dummy took damage")
-		print_debug("current dummy health: " + str(health))
+		print_debug("[enemy] took damage")
+		print_debug("current [enemy] health: " + str(health))
 		$hurt.play()
 		health -= 1
 		

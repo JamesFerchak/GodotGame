@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://be2iwwo68weiq"]
+[gd_scene load_steps=6 format=3 uid="uid://c5na0sgymqxfx"]
 
-[ext_resource type="Script" path="res://enemies/dummy.gd" id="1_2aodq"]
-[ext_resource type="Texture2D" uid="uid://y5mrwb5ngti6" path="res://enemies/dummy.png" id="1_q2dbe"]
-[ext_resource type="AudioStream" uid="uid://lcyjc0o31lhv" path="res://sound effects/enemyhurt.wav" id="3_n5p4d"]
+[ext_resource type="Script" path="res://enemies/enemybase.gd" id="1_hpva0"]
+[ext_resource type="Texture2D" uid="uid://y5mrwb5ngti6" path="res://enemies/dummy.png" id="2_4q7mu"]
+[ext_resource type="AudioStream" uid="uid://lcyjc0o31lhv" path="res://sound effects/enemyhurt.wav" id="3_gpigb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g8gh4"]
 size = Vector2(8, 7)
@@ -10,13 +10,15 @@ size = Vector2(8, 7)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qo8f"]
 size = Vector2(8, 7)
 
-[node name="Dummy" type="RigidBody2D" groups=["enemies"]]
+[node name="Enemy" type="RigidBody2D" groups=["enemies"]]
 collision_layer = 64
 collision_mask = 83
-script = ExtResource("1_2aodq")
+script = ExtResource("1_hpva0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_q2dbe")
+position = Vector2(0, 0.5)
+scale = Vector2(1, 0.875)
+texture = ExtResource("2_4q7mu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -33,7 +35,7 @@ shape = SubResource("RectangleShape2D_3qo8f")
 debug_color = Color(0.960784, 0.152941, 0.32549, 0.419608)
 
 [node name="hurt" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_n5p4d")
+stream = ExtResource("3_gpigb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

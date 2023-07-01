@@ -13,6 +13,7 @@ var layer_of_collision = null
 var health = 3
 var player_alive = true
 var iFrames = false
+var stun = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -41,6 +42,10 @@ func heal():
 
 
 func _physics_process(delta):
+	#handle velocity with stun active
+	if stun == true:
+		velocity.x = 0
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -51,11 +56,12 @@ func _physics_process(delta):
 		was_in_air = false
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jump()
+		if stun == false:
+			jump()
 		
 	#check for shoot button + mag
 	if Input.is_action_just_pressed("shoot"):
-		if get_tree().get_nodes_in_group("pBullet").size() <= 1:
+		if stun == false:
 			shoot()
 		
 	
@@ -63,9 +69,11 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	direction = Input.get_vector("left", "right", "down", "up")
 	if direction:
-		velocity.x = direction.x * speed
+		if stun == false:
+			velocity.x = direction.x * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		if stun == false:
+			velocity.x = move_toward(velocity.x, 0, speed)
 	
 	var collision = move_and_slide()
 	if collision:
@@ -83,6 +91,7 @@ func _physics_process(delta):
 	
 
 func shoot():
+	$SoundEffectShoot.play()
 	var b = bullet.instantiate()
 	owner.add_child(b)
 	b.transform = $Marker2D.global_transform
@@ -90,11 +99,13 @@ func shoot():
 
 func jump():
 	velocity.y = jump_velocity
+	$SoundEffectJump.play()
 	#animated_sprite.play("jump_start")
 	#animation_locked = true
 
 func land():
 	if not animation_locked:
+		$SoundEffectLand.play()
 		animated_sprite.play("idle")
 
 func updateAnimation():
@@ -126,7 +137,10 @@ func touched_lava():
 func hurt():
 	health -=1
 	$InvFrameTimer.start()
+	$stunTimer.start()
+	$SoundEffectHurt.play()
 	iFrames = true
+	stun = true
 	animated_sprite.play("hurt")
 	animation_locked = true
 
@@ -145,4 +159,8 @@ func _on_player_hitbox_body_entered(body):
 
 func _on_inv_frame_timer_timeout():
 	iFrames = false
+
+
+func _on_stun_timer_timeout():
 	animation_locked = false
+	stun = false

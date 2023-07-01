@@ -11,5 +11,16 @@ func _process(delta):
 	pass
 
 
-func _on_start_button_pressed():
+
+func _on_play_button_pressed():
+	$buttonpress.play()
+	
+
+
+func _on_play_button_mouse_entered():
+	pass
+	#$buttonhover.play()
+
+
+func _on_buttonpress_finished():
 	get_tree().change_scene_to_file("res://TestLevel.tscn")

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://jo6h8bvnnpoj"]
+[gd_scene load_steps=5 format=3 uid="uid://jo6h8bvnnpoj"]
 
 [ext_resource type="Script" path="res://main menu/main_menu.gd" id="1_wa858"]
+[ext_resource type="Texture2D" uid="uid://jxtwo7q7lww4" path="res://main menu/PlayButton.png" id="2_iurjo"]
+[ext_resource type="AudioStream" uid="uid://boqvcgrdt5bwj" path="res://sound effects/buttonhover.wav" id="3_x1l3r"]
+[ext_resource type="AudioStream" uid="uid://bdcxy601mi1i5" path="res://sound effects/menu select.wav" id="4_x5s6d"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -10,17 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wa858")
-
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.045
-anchor_bottom = 0.039
-offset_left = 73.0
-offset_top = 40.0
-offset_right = 75.8
-offset_bottom = 49.94
-text = "Start"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(96, 54)
@@ -35,4 +27,24 @@ offset_right = 145.0
 offset_bottom = 30.0
 text = "Video Game"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[node name="PlayButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.116
+anchor_bottom = 0.119
+offset_left = 81.0
+offset_top = 44.0
+offset_right = -0.360001
+offset_bottom = -0.260002
+texture_normal = ExtResource("2_iurjo")
+
+[node name="buttonhover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x1l3r")
+volume_db = -1.0
+
+[node name="buttonpress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x5s6d")
+
+[connection signal="mouse_entered" from="PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="finished" from="buttonpress" to="." method="_on_buttonpress_finished"]
