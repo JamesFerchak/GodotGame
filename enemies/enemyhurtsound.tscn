@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://culc2ts8mxc0o"]
+
+[ext_resource type="AudioStream" uid="uid://lcyjc0o31lhv" path="res://sound effects/enemyhurt.wav" id="1_x2hw1"]
+[ext_resource type="Script" path="res://enemies/enemyhurtsound.gd" id="2_k2rnn"]
+
+[node name="hurt" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_x2hw1")
+autoplay = true
+script = ExtResource("2_k2rnn")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

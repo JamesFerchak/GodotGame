@@ -46,6 +46,9 @@ func _physics_process(delta):
 	if stun == true:
 		velocity.x = 0
 	
+	#i frame flashing
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
