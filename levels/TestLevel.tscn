@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://derol8d1snab4"]
 
-[ext_resource type="Texture2D" uid="uid://blr37fkpud3kr" path="res://Player/tilemap.png" id="1_civui"]
-[ext_resource type="PackedScene" uid="uid://eajd2yq56b21" path="res://Player/player.tscn" id="2_eifq0"]
-[ext_resource type="PackedScene" uid="uid://be2iwwo68weiq" path="res://enemies/dummy.tscn" id="3_s1jh2"]
+[ext_resource type="Texture2D" uid="uid://blr37fkpud3kr" path="res://Player/tilemap.png" id="1_d664r"]
+[ext_resource type="PackedScene" uid="uid://eajd2yq56b21" path="res://Player/player.tscn" id="2_lvnxs"]
+[ext_resource type="PackedScene" uid="uid://be2iwwo68weiq" path="res://enemies/dummy.tscn" id="3_4s7xc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qoqeo"]
-texture = ExtResource("1_civui")
+texture = ExtResource("1_d664r")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
@@ -36,7 +36,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qoqeo")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3cjh"]
-texture = ExtResource("1_civui")
+texture = ExtResource("1_d664r")
 6:5/0 = 0
 6:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:5/0/physics_layer_0/angular_velocity = 0.0
@@ -65,7 +65,7 @@ tile_set = SubResource("TileSet_gdxo2")
 format = 2
 layer_0/tile_data = PackedInt32Array(131085, 393216, 4, 196621, 393216, 5, 262157, 393216, 5, 131086, 393216, 4, 196622, 393216, 5, 262158, 393216, 5)
 
-[node name="Player" parent="." instance=ExtResource("2_eifq0")]
+[node name="Player" parent="." instance=ExtResource("2_lvnxs")]
 position = Vector2(-209, 59)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
@@ -82,5 +82,5 @@ drag_right_margin = 0.08
 drag_bottom_margin = 0.7
 editor_draw_limits = true
 
-[node name="Dummy" parent="." instance=ExtResource("3_s1jh2")]
-position = Vector2(60, 12)
+[node name="Dummy" parent="." instance=ExtResource("3_4s7xc")]
+position = Vector2(47, 12)

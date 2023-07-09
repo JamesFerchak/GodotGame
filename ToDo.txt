@@ -1,0 +1,44 @@
+General Gameplay:
+variable jump height
+visual effects when taking damage and when something dies/gets destroyed.
+Quit button in menu
+pause menu
+
+
+UI:
+Make art for title in main menu
+health ui
+
+
+enemy makes death sound on hit
+
+enemy stuff:
+saul
+	sprite
+	moves
+	dies
+	damages enemy
+sal
+	sprite
+	literally just the dummy enemy but huge
+	
+enemy bullet
+	sprite
+	damages player
+	destroys itself on contact
+
+peeker
+	changes from vulnerable to invulnerable
+	shoots when vulnerable
+	can die
+	sprites
+
+tony turret
+	sprite
+	shoots bullets
+	dies
+
+piston pete
+	only one part of model takes damage
+	sprite
+	dies

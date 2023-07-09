@@ -32,7 +32,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3qo8f")
 debug_color = Color(0.960784, 0.152941, 0.32549, 0.419608)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="hurt" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_n5p4d")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	position += transform.x * speed * delta
 	killNumber += 1
-	if killNumber >= 20:
+	if killNumber >= 50:
 		queue_free()
 	
 

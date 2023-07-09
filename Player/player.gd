@@ -35,13 +35,16 @@ func _process(delta):
 
 
 func kill():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://main menu/main_menu.tscn")
+	
+
 func heal():
 	health = 3
 
 
 
 func _physics_process(delta):
+	
 	#handle velocity with stun active
 	if stun == true:
 		velocity.x = 0
@@ -94,11 +97,11 @@ func _physics_process(delta):
 	
 
 func shoot():
-	$SoundEffectShoot.play()
-	var b = bullet.instantiate()
-	owner.add_child(b)
-	b.transform = $Marker2D.global_transform
-	pass
+	if get_tree().get_nodes_in_group("pBullet").size() < 3:
+		$SoundEffectShoot.play()
+		var b = bullet.instantiate()
+		owner.add_child(b)
+		b.transform = $Marker2D.global_transform
 
 func jump():
 	velocity.y = jump_velocity

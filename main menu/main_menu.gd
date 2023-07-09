@@ -23,4 +23,4 @@ func _on_play_button_mouse_entered():
 
 
 func _on_buttonpress_finished():
-	get_tree().change_scene_to_file("res://TestLevel.tscn")
+	get_tree().change_scene_to_file("res://levels/TestLevel.tscn")
